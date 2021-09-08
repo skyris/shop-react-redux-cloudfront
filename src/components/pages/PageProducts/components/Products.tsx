@@ -38,7 +38,6 @@ export default function Products() {
   useEffect(() => {
     axios.get(`${API_PATHS.products}/products`)
       .then(res => setProducts(res.data));
-    // setProducts(productList);
   }, [])
 
   return (
@@ -52,8 +51,11 @@ export default function Products() {
               title="Image title"
             />
             <CardContent className={classes.cardContent}>
-              <Typography gutterBottom variant="h5" component="h2">
+              <Typography gutterBottom variant="h6" component="h2">
                 {product.title}
+              </Typography>
+              <Typography gutterBottom variant="subtitle1" component="h2">
+                by {product.author}
               </Typography>
               <Typography>
                 {formatAsPrice(product.price)}
