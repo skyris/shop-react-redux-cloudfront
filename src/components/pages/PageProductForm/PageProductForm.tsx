@@ -10,6 +10,8 @@ import PaperLayout from "components/PaperLayout/PaperLayout";
 import Typography from "@material-ui/core/Typography";
 import API_PATHS from "constants/apiPaths";
 
+
+
 const Form = (props: FormikProps<FormikValues>) => {
   const {
     // values,
@@ -34,8 +36,23 @@ const Form = (props: FormikProps<FormikValues>) => {
     // shouldConfirmLeave,
   } = props;
 
+  const submitFunction = (event: React.FormEvent) => {
+    console.log(event);
+    axios.post(`${API_PATHS.products}/products`, {
+      event: JSON.stringify(event)
+    })
+    .then(function (response) {
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>>>');
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log('<<<<<<<<<<<<<<<<<<<<<<');
+      console.log(error);
+    }).finally(handleSubmit);
+  }
+
   return (
-    <form onSubmit={handleSubmit} autoComplete="off">
+    <form onSubmit={submitFunction} autoComplete="off">
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Field
